@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% import 'macros.html' as macros %} 
+{% block content %}
+
+<div class="col-md-4 col-md-offset-4">
+
+      <div align="center">
+        <h2>{{num_return}} most recent entries to your AWS RDS:</h2>
+      </div>
+
+<hr>
+
+    <table class="table table-striped table-hover">
+  <thead>
+{% for z in results %}
+    <tr>
+      <td>{{z.notes}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+
+<hr>
+
+<div align="center"
+    <p><a href="/"><button type="submit" class="btn btn-primary">Return home</button></p></a>
+</div>
+
+
+{% endblock %}  

@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% import 'macros.html' as macros %} 
+{% block content %}
+
+<div class="col-md-4 col-md-offset-4">
+
+      <div align="center">
+        <h2>Flask-AWS Tutorial</h2>
+      </div>
+
+<hr>
+
+<form method="post" action="/index"  id="db_post" name="db_post">
+
+    {{ form1.hidden_tag() }} 
+    
+    {{ macros.render_field(form1.dbNotes, placeholder='Enter text to submit to the DB', type='dbNotes', label_visible=false) }}
+    
+    <div align="center"><button type="submit" class="btn btn-primary">Submit</button></p></div>
+
+</form>   
+
+<hr>
+
+<form method="post" action="/index"  id="db_post" name="db_view">
+
+    {{ form2.hidden_tag() }} 
+    
+    {{ macros.render_field(form2.numRetrieve, placeholder='Retrieve last N DB entries (enter 1-9)', type='numRetrieve', label_visible=false) }}
+    
+    <div align="center"><button type="submit" class="btn btn-primary">Retrieve</button></p></div>
+
+</form>   
+
+</div>
+
+{% endblock %}  
