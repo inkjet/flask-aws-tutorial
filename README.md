@@ -27,8 +27,18 @@ $ python application.py
 ```
 And point your browser to http://0.0.0.0:5000
 
-You can write to the database:
+Using the top form, you can write to the database:
 
+![Site main page](http://i.imgur.com/2d66GIB.png)
 
+![Data entered](http://i.imgur.com/AQWdD2Q.png)
+
+Get confirmation:
+
+![confirmaton](http://i.imgur.com/JtemL7a.png)
+
+Using the bottom form, you can see the last 1 to 9 entires of the database in reverse chronological order:
+
+![results](http://i.imgur.com/LFJeKDz.png)
 
 
