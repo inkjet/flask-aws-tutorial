@@ -15,7 +15,7 @@ $ source flask-aws/bin/activate
 ```
 Now install the required modules:
 ```
-$ pip install requirements.txt
+$ pip install -r requirements.txt
 ```
 Edit the config.py file to point to a local database.  Then run:
 ```
