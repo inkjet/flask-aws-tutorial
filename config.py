@@ -5,7 +5,7 @@
 SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://flask:(password)@flasktest.cwsaehb7ywmi.us-east-1.rds.amazonaws.com:3306/flaskdb'
 
 # Uncomment the line below if you want to work with a local DB
-#SQLALCHEMY_DATABASE_URI = 'sqlite:////home/scott/Documents/test.db'
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
 
 SQLALCHEMY_POOL_RECYCLE = 3600
 
