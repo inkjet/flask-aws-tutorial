@@ -17,7 +17,7 @@ Now install the required modules:
 ```
 $ pip install -r requirements.txt
 ```
-Edit ```config.py``` by commenting out the AWS URL and uncomment this line:
+To use the app right away, you can use a local database. Edit ```config.py``` by commenting out the AWS URL and uncomment this line:
 ```
 SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
 ```
