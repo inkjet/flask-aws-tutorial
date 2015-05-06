@@ -17,7 +17,11 @@ Now install the required modules:
 ```
 $ pip install -r requirements.txt
 ```
-Edit the config.py file to point to a local database.  Then run:
+Edit ```config.py``` by commenting out the AWS URL and uncomment this line:
+```
+SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+```
+Next run:
 ```
 $ python db_create.py
 ```
