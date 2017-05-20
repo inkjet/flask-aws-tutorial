@@ -8,6 +8,8 @@ It's a simple Flask app that writes and reads from a database. It uses Amazon RD
 
 To tool around with the app directly, here's a quickstart guide. 
 
+**Note: The following assumes Python 2.7.**
+
 Clone this repo to your local machine. In the top level directory, create a virtual environment:
 ```
 $ virtualenv flask-aws
