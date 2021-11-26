@@ -1,13 +1,15 @@
-# edit the URI below to add your RDS password and your AWS URL
-# The other elements are the same as used in the tutorial
-# format: (user):(password)@(db_identifier).amazonaws.com:3306/(db_name)
+from environs import Env
+from db_create import AWSPostgreSQL
 
-SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://flaskdemo:flaskdemo@flaskdemo.cwsaehb7ywmi.us-east-1.rds.amazonaws.com:3306/flaskdemo'
+env = Env()
+env.read_env()
+
 
 # Uncomment the line below if you want to work with a local DB
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///test.db'
+#SQLALCHEMY_DATABASE_URI = 'postgresql://'+env.str("LOCAL_USER")+':'+env.str("LOCAL_PW")+'@localhost:5432/flask_db'
+SQLALCHEMY_DATABASE_URI = AWSPostgreSQL().uri
 
 SQLALCHEMY_POOL_RECYCLE = 3600
 
 WTF_CSRF_ENABLED = True
-SECRET_KEY = 'dsaf0897sfdg45sfdgfdsaqzdf98sdf0a'
+SECRET_KEY = env.str("SECRET_KEY")

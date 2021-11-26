@@ -7,19 +7,26 @@ Author: Scott Rodkey - rodkeyscott@gmail.com
 Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 '''
 
-from flask import Flask, render_template, request
-from application import db
+from flask import render_template, request
+from application import db, application
 from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
+from environs import Env
+
+env = Env()
+env.read_env()
+
+db.create_all()
 
 # Elastic Beanstalk initalization
-application = Flask(__name__)
-application.debug=True
+#application = Flask(__name__)
+
 # change this to your own value
-application.secret_key = 'cC1YCIWOj9GgWspgNEo2'   
+application.secret_key = env.str("APP_SECRET")
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
+
 def index():
     form1 = EnterDBInfo(request.form) 
     form2 = RetrieveDBInfo(request.form) 

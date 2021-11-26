@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Flask-Bootstrap4 = "*"
+Flask-WTF = "*"
+Jinja2 = "*"
+SQLAlchemy = "*"
+WTForms = "*"
+Werkzeug = "*"
+argparse = "*"
+itsdangerous = "*"
+boto3 = "*"
+environs="*"
+psycopg2="*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
