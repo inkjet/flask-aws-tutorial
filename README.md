@@ -1,7 +1,7 @@
 ### Deploying a Flask application in AWS: An end-to-end tutorial
 
 This is the code that goes along with the detailed writeup here:
-
+ 
 https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 
 It's a simple Flask app that writes and reads from a database. It uses Amazon RDS for the database backend, but you can make things even simpler and use a local DB.
