@@ -18,12 +18,6 @@ env.read_env()
 
 db.create_all()
 
-# Elastic Beanstalk initalization
-#application = Flask(__name__)
-
-# change this to your own value
-application.secret_key = env.str("APP_SECRET")
-
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 
