@@ -49,4 +49,4 @@ def index():
     return render_template('index.html', form1=form1, form2=form2)
 
 if __name__ == '__main__':
-    application.run(debug=True)
+    application.run(host='127.0.0.1:8000', debug=True)
