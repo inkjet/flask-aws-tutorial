@@ -91,4 +91,4 @@ jobs:
       # Deploy to (or Create) the Elastic Beanstalk environment
       - name: Create environment & deploy
         run: |
-          (eb use flask-aws-env && eb status flask-aws-env && eb deploy) || (eb create flask-aws-env && eb setenv APP_SECRET=${{ secrets.APP_SECRET }} AWS_USER=${{ secrets.AWS_USER }} AWS_PW=${{ secrets.AWS_PW }} AWS_DB=${{ secrets.AWS_PW }} AWS_INSTANCE=${{ secrets.AWS_INSTANCE }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }})
+          (eb use flask-aws-env && eb status flask-aws-env && eb deploy) || (eb create flask-aws-env && eb setenv APP_SECRET=${{ secrets.APP_SECRET }} AWS_USER=${{ secrets.AWS_USER }} AWS_PW=${{ secrets.AWS_PW }} AWS_DB=${{ secrets.AWS_PW }} AWS_INSTANCE=${{ secrets.AWS_INSTANCE }} AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} && eb deploy)
