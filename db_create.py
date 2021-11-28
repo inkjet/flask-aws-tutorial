@@ -1,10 +1,13 @@
 import time
+import logging
 from environs import Env
 import boto3
 from botocore.config import Config
 
 env = Env()
 env.read_env()
+
+logging.basicConfig(filename='flask-aws.log')
 
 my_config = Config(
     region_name='us-east-2'
@@ -18,6 +21,7 @@ client = boto3.client('rds',
 
 class AWSPostgreSQL():
     def __init__(self):
+        logging.info('DB init start.')
         self.created = False
         self.db_create_response = {}
         self.exists_response = {}
@@ -25,11 +29,7 @@ class AWSPostgreSQL():
         if not self.exists:
             self.create_db()
 
-            # wait until db finishes creating
-
-            while not self.available:
-                print('avail: ', self.available)
-                time.sleep(10)
+        logging.info('DB init complete.')
 
     def create_db(self):
         self.db_create_response = client.create_db_instance(
@@ -48,7 +48,14 @@ class AWSPostgreSQL():
             BackupRetentionPeriod=0
         )
         self.created = True
-        print("DB creating.")
+        logging.info('DB create start.')
+
+        # wait until db finishes creating
+        while not self.available:
+            logging.info(f'DB status is available?: {self.available}')
+            time.sleep(10)
+
+        logging.info('DB create finish.')
 
     @property
     def exists(self):
@@ -56,7 +63,7 @@ class AWSPostgreSQL():
             self.exists_response = client.describe_db_instances(
                 DBInstanceIdentifier=env.str("AWS_INSTANCE")
             )
-            print(self.exists_response)
+            logging.info(f'DB exist. Details: {self.exists_response}')
             exists = True
 
         except (client.exceptions.DBInstanceNotFoundFault, KeyError) as e:
