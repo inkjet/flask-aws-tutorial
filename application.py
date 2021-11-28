@@ -1,56 +1,34 @@
-'''
-Simple Flask application to test deployment to Amazon Web Services
-Uses Elastic Beanstalk and RDS
+from flask import Flask
 
-Author: Scott Rodkey - rodkeyscott@gmail.com
+# print a nice greeting.
+def say_hello(username = "World"):
+    return '<p>Hello %s!</p>\n' % username
 
-Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
-'''
+# some bits of text for the page.
+header_text = '''
+    <html>\n<head> <title>EB Flask Test</title> </head>\n<body>'''
+instructions = '''
+    <p><em>Hint</em>: This is a RESTful web service! Append a username
+    to the URL (for example: <code>/Thelonious</code>) to say hello to
+    someone specific.</p>\n'''
+home_link = '<p><a href="/">Back</a></p>\n'
+footer_text = '</body>\n</html>'
 
-import logging
-from flask import render_template, request
-from application import db, application
-from application.models import Data
-from application.forms import EnterDBInfo, RetrieveDBInfo
-from environs import Env
+# EB looks for an 'application' callable by default.
+application = Flask(__name__)
 
-env = Env()
-env.read_env()
+# add a rule for the index page.
+application.add_url_rule('/', 'index', (lambda: header_text +
+    say_hello() + instructions + footer_text))
 
-logging.basicConfig(level=logging.INFO)
+# add a rule when the page is accessed with a name appended to the site
+# URL.
+application.add_url_rule('/<username>', 'hello', (lambda username:
+    header_text + say_hello(username) + home_link + footer_text))
 
-db.create_all()
-
-@application.route('/', methods=['GET', 'POST'])
-@application.route('/index', methods=['GET', 'POST'])
-def index():
-    form1 = EnterDBInfo(request.form) 
-    form2 = RetrieveDBInfo(request.form) 
-    
-    if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes=form1.dbNotes.data)
-        try:     
-            db.session.add(data_entered)
-            db.session.commit()        
-            db.session.close()
-        except:
-            db.session.rollback()
-        return render_template('thanks.html', notes=form1.dbNotes.data)
-        
-    if request.method == 'POST' and form2.validate():
-        try:   
-            num_return = int(form2.numRetrieve.data)
-            query_db = Data.query.order_by(Data.id.desc()).limit(num_return)
-            for q in query_db:
-                print(q.notes)
-            db.session.close()
-        except:
-            db.session.rollback()
-        return render_template('results.html', results=query_db, num_return=num_return)                
-    
-    return render_template('index.html', form1=form1, form2=form2)
-
-if __name__ == '__main__':
+# run the app.
+if __name__ == "__main__":
+    # Setting debug to True enables debug output. This line should be
+    # removed before deploying a production app.
     application.debug = True
     application.run()
-    logging.info('Application run command complete.')
