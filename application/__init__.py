@@ -6,4 +6,4 @@ application = app = Flask(__name__)
 application.config.from_object('config')
 bootstrap = Bootstrap(application)
 db = SQLAlchemy(application)
-
+db.create_all()

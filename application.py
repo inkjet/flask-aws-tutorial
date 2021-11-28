@@ -18,8 +18,7 @@ env = Env()
 env.read_env()
 
 logging.basicConfig(level=logging.INFO)
-
-db.create_all()
+logging.info('Start application.py')
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
