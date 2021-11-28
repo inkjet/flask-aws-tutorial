@@ -37,9 +37,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       # Run our unit tests
-      #- name: Run unit tests
-      #  run: |
-      #    python test_application.py
+      - name: Run unit tests
+        run: |
+          python test.py
       
   deploy-to-test:
     # Only run this job if "build" has ended successfully
