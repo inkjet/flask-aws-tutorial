@@ -7,7 +7,7 @@ from botocore.config import Config
 env = Env()
 env.read_env()
 
-logging.basicConfig(filename='/var/log/flask-aws.log')
+logging.basicConfig(filename='/var/log/messages')
 
 my_config = Config(
     region_name='us-east-2'
