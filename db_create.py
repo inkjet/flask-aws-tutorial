@@ -7,7 +7,7 @@ from botocore.config import Config
 env = Env()
 env.read_env()
 
-logging.basicConfig(filename='flask-aws.log')
+logging.basicConfig(filename='/var/log/flask-aws.log')
 
 my_config = Config(
     region_name='us-east-2'
@@ -66,7 +66,8 @@ class AWSPostgreSQL():
             logging.info(f'DB exist. Details: {self.exists_response}')
             exists = True
 
-        except (client.exceptions.DBInstanceNotFoundFault, KeyError) as e:
+        except Exception as e:
+            logging.error(e)
             exists = False
 
         return exists
@@ -77,7 +78,8 @@ class AWSPostgreSQL():
         try:
             if self.exists and self.exists_response['DBInstances'][0]['DBInstanceStatus'] == 'available':
                 available = True
-        except (client.exceptions.DBInstanceNotFoundFault, KeyError) as e:
+        except Exception as e:
+            logging.error(e)
             pass
 
         return available
