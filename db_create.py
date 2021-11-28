@@ -29,6 +29,13 @@ class AWSPostgreSQL():
         if not self.exists:
             self.create_db()
 
+        # wait until db finishes creating
+        while not self.available:
+            logging.info(f'DB status is available?: {self.available}')
+            time.sleep(10)
+
+            logging.info('DB create finish.')
+
         logging.info('DB init complete.')
 
     def create_db(self):
@@ -50,12 +57,6 @@ class AWSPostgreSQL():
         self.created = True
         logging.info('DB create start.')
 
-        # wait until db finishes creating
-        while not self.available:
-            logging.info(f'DB status is available?: {self.available}')
-            time.sleep(10)
-
-        logging.info('DB create finish.')
 
     @property
     def exists(self):
