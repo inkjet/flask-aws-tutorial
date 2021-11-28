@@ -7,6 +7,7 @@ Author: Scott Rodkey - rodkeyscott@gmail.com
 Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-on-aws-a72daba6bb80
 '''
 
+import logging
 from flask import render_template, request
 from application import db, application
 from application.models import Data
@@ -16,11 +17,12 @@ from environs import Env
 env = Env()
 env.read_env()
 
+logging.basicConfig(level=logging.INFO)
+
 db.create_all()
 
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
-
 def index():
     form1 = EnterDBInfo(request.form) 
     form2 = RetrieveDBInfo(request.form) 
@@ -50,3 +52,4 @@ def index():
 
 if __name__ == '__main__':
     application.run(host='127.0.0.1:8000', debug=True)
+    logging.info('Application run command complete.')
