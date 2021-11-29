@@ -1,10 +1,9 @@
 import time
 import logging
 from environs import Env
-from flask_sqlalchemy import SQLAlchemy
 import boto3
 from botocore.config import Config
-from application import application
+
 
 env = Env()
 env.read_env()
@@ -97,6 +96,3 @@ class AWSPostgreSQL():
 
         return uri
 
-application.config.from_object('config')
-db = SQLAlchemy(application)
-db.create_all()
