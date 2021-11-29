@@ -1,5 +1,5 @@
 from application import application
-from application.database import db
+from application import db
 from flask import render_template, request
 from application.models import Data
 from application.forms import EnterDBInfo, RetrieveDBInfo
