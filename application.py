@@ -14,7 +14,6 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
     logging.info('Start application.py')
-    print(application)
     application.debug = True
     application.run()
     logging.info('Application run command complete.')

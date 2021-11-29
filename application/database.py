@@ -4,7 +4,6 @@ from environs import Env
 import boto3
 from botocore.config import Config
 
-
 env = Env()
 env.read_env()
 
@@ -21,12 +20,17 @@ client = boto3.client('rds',
 
 
 class AWSPostgreSQL():
+    '''
+    A class to return the URL of the PostgreSQL db. It semi-synchronously creates the db if it doesn't exist. It issues
+    an async command and waits for it to finish before returning the URI.
+    '''
     def __init__(self):
         logging.info('DB init start.')
         self.created = False
         self.db_create_response = {}
         self.exists_response = {}
 
+        # create db if it doesn't exist
         if not self.exists:
             self.create_db()
 
@@ -61,6 +65,8 @@ class AWSPostgreSQL():
 
     @property
     def exists(self):
+        # sadly the best way to check for existence seemed to be to call describe instances, which throws an exception
+        # if there are no instances to describe
         try:
             self.exists_response = client.describe_db_instances(
                 DBInstanceIdentifier=env.str("AWS_INSTANCE")
