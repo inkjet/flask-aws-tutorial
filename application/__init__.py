@@ -1,12 +1,11 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
+from application.extensions import create_db
 
 application = Flask(__name__)
 application.config.from_object('config')
 bootstrap = Bootstrap(application)
+db = create_db(application)
 
 from . import views
 
-db = SQLAlchemy(application)
-db.create_all()
