@@ -8,7 +8,7 @@ Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-
 '''
 
 import logging
-from myapplication import application as app
+from application import application
 from environs import Env
 
 env = Env()
@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
     logging.info('Start application.py')
-    app.debug = True
-    app.run()
+    print(application)
+    application.debug = True
+    application.run()
     logging.info('Application run command complete.')

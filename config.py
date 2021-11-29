@@ -1,5 +1,5 @@
 from environs import Env
-from myapplication.database import AWSPostgreSQL
+from application.database import AWSPostgreSQL
 
 env = Env()
 env.read_env()

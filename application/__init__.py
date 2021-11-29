@@ -6,4 +6,4 @@ application = Flask(__name__)
 application.config.from_object('config')
 bootstrap = Bootstrap(application)
 
-import myapplication.views
+from . import views

@@ -4,7 +4,7 @@ from environs import Env
 from flask_sqlalchemy import SQLAlchemy
 import boto3
 from botocore.config import Config
-from myapplication import application
+from application import application
 
 env = Env()
 env.read_env()
