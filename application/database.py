@@ -50,7 +50,7 @@ class AWSPostgreSQL():
             MasterUsername=env.str("AWS_USER"),
             MultiAZ=False,
             PubliclyAccessible=True,
-            VpcSecurityGroupIds=['sg-05cb5081bff60ae8a', ],
+            VpcSecurityGroupIds=[env.str("AWS_DB_SECURITY_GROUP_ID"), ],
             EnableIAMDatabaseAuthentication=False,
             EnablePerformanceInsights=False,
             BackupRetentionPeriod=0
