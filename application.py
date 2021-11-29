@@ -9,10 +9,6 @@ Step-by-step tutorial: https://medium.com/@rodkey/deploying-a-flask-application-
 
 import logging
 from application import application
-from environs import Env
-
-env = Env()
-env.read_env()
 
 logging.basicConfig(level=logging.INFO)
 
