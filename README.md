@@ -18,6 +18,7 @@ CI/CD eliminates change management pain and human error. With a process like thi
 deployed.
 
 ## Architecture
+![architecture](./images/architecture.png)
 
 ## About Elastic Beanstalk
 According to the [documentation](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html),
@@ -205,7 +206,7 @@ $ pipenv lock -r > requirements.txt
 ## Future Improvements
 There are two additional steps that would be necessary for a production application.
 
-### The build step with testing
+### The build step with testing+
 I left this setup in GitHub actions, but the testing piece is commented out, so it isn't doing much
 other than testing the installation. Generally you would run unit tests in this step, but that is difficult to do with my current
 setup. You don't want to test with the real database, so you would probably want to write tests against a local (to the
