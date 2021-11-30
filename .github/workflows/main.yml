@@ -33,18 +33,6 @@ jobs:
       
       # Install dependencies
       - name: Install dependencies
-        env:
-          APP_SECRET: ${{ secrets.APP_SECRET }}
-          AWS_USER: ${{ secrets.AWS_USER }}
-          AWS_PW: ${{ secrets.AWS_PW }}
-          AWS_DB: ${{ secrets.AWS_DB }}
-          AWS_INSTANCE: ${{ secrets.AWS_INSTANCE }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_DB_SECURITY_GROUP_ID: ${{ secrets.AWS_DB_SECURITY_GROUP_ID }}
-          LOCAL_DEVELOPMENT: ${{ secrets.LOCAL_DEVELOPMENT }}
-          LOCAL_USER: ${{ secrets.LOCAL_USER }}
-          LOCAL_PW: ${{ secrets.LOCAL_PW }}
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -101,6 +89,19 @@ jobs:
           aws-region: us-east-2
       # Create DB
       - name: Create DB if does not exist and Migrate
+        env:
+          APP_SECRET: ${{ secrets.APP_SECRET }}
+          AWS_USER: ${{ secrets.AWS_USER }}
+          AWS_PW: ${{ secrets.AWS_PW }}
+          AWS_DB: ${{ secrets.AWS_DB }}
+          AWS_INSTANCE: ${{ secrets.AWS_INSTANCE }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_DB_SECURITY_GROUP_ID: ${{ secrets.AWS_DB_SECURITY_GROUP_ID }}
+          LOCAL_DEVELOPMENT: ${{ secrets.LOCAL_DEVELOPMENT }}
+          LOCAL_USER: ${{ secrets.LOCAL_USER }}
+          LOCAL_PW: ${{ secrets.LOCAL_PW }}
+          FLASK_APP: ${{ secrets.FLASK_APP }}
         run: |
           python -c "from application.database import AWSPostgreSQL; AWSPostgreSQL()"
           flask db upgrade
