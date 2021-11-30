@@ -15,7 +15,7 @@ def index():
     form2 = RetrieveDBInfo(request.form)
 
     if request.method == 'POST' and form1.validate():
-        data_entered = Data(notes=form1.dbNotes.data)
+        data_entered = Data(notes=form1.dbNotes.data, greeting=form1.dbGreeting.data)
         try:
             db.session.add(data_entered)
             db.session.commit()
