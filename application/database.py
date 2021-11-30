@@ -39,8 +39,7 @@ class AWSPostgreSQL():
             logging.info(f'DB status is available?: {self.available}')
             time.sleep(10)
 
-            logging.info('DB create finish.')
-
+        logging.info('DB create finish.')
         logging.info('DB init complete.')
 
     def create_db(self):
