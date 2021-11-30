@@ -83,7 +83,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-2
-
+      # Create DB
+      - name: Create DB if does not exist and Migrate
+        run: |
+          python -c "from application.database import AWSPostgreSQL; AWSPostgreSQL()"
+          flask db upgrade
       # Create the Elastic Beanstalk application
       - name: Create EBS application
         run: |
