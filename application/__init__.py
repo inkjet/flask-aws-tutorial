@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_bootstrap import Bootstrap
-from application.extensions import db
+from application.extensions import db, migrate
 from . import models
 
 # create and bootstrap the application
@@ -10,6 +10,8 @@ bootstrap = Bootstrap(application)
 
 # init and create the db
 db.init_app(application)
+migrate.init_app(application, db)
+
 with application.app_context():
     db.create_all()
 

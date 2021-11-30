@@ -17,6 +17,7 @@ itsdangerous = "*"
 boto3 = "*"
 environs="*"
 psycopg2="*"
+flask-migrate = "*"
 
 [dev-packages]
 
