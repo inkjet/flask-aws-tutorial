@@ -70,10 +70,14 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       # Elastic Beanstalk CLI version
       - name: Get EB CLI version
         run: |
-          python -m pip install --upgrade pip
           pip install awsebcli --upgrade
           eb --version
       # Configure AWS Credentials
